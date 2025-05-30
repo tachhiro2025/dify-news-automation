@@ -1,9 +1,20 @@
-run: |
-curl -X POST 'https://api.dify.ai/v1/workflows/run' \
-  --header 'Authorization: Bearer ${{ secrets.DIFY_API_KEY }}' \
-  --header 'Content-Type: application/json' \
-  --data-raw '{
-    "inputs": {},
-    "response_mode": "blocking",
-    "user": "github-action"
-  }'
+name: Daily News Notification
+on:
+  schedule:
+    - cron: '0 22 * * *'
+  workflow_dispatch:
+
+jobs:
+  send-news:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Dify Workflow
+        run: |
+          curl -X POST 'https://api.dify.ai/v1/workflows/run' \
+            --header 'Authorization: Bearer ${{ secrets.DIFY_API_KEY }}' \
+            --header 'Content-Type: application/json' \
+            --data-raw '{
+              "inputs": {},
+              "response_mode": "blocking",
+              "user": "github-action"
+            }'
