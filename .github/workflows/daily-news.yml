@@ -10,7 +10,7 @@ jobs:
     steps:
       - name: Trigger Dify Workflow
         run: |
-          curl -X POST "https://api.dify.ai/v1/workflows/eVjG2sr6foaMsomk/run" \
+          curl -X POST "https://api.dify.ai/v1" \
             -H "Authorization: Bearer ${{ secrets.DIFY_API_KEY }}" \
             -H "Content-Type: application/json" \
             -d '{
