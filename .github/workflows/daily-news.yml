@@ -1,14 +1,14 @@
-name: Daily News Notification
+name: Daily News & Metro Notification
 on:
   schedule:
-    - cron: '0 22 * * *'
+    - cron: '0 21 * * *'  # 日本時間6:00 (ニュース+地下鉄情報)
   workflow_dispatch:
 
 jobs:
-  send-news:
+  send-morning-info:
     runs-on: ubuntu-latest
     steps:
-      - name: Trigger Dify Workflow
+      - name: Trigger Enhanced Dify Workflow
         run: |
           curl -X POST 'https://api.dify.ai/v1/workflows/run' \
             --header 'Authorization: Bearer ${{ secrets.DIFY_API_KEY }}' \
